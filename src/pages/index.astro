@@ -1,9 +1,23 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro"
+import Banner from "../components/Banner.vue";
+import Catalog from "../components/Catalog.vue";
+import Features from "../components/Features.vue";
+import MainLayout from "../layouts/MainLayout.astro";
+import Sidebar from "../components/layout/Sidebar.vue"
+import Showing from "../components/Showing.vue";
 ---
 <MainLayout>
+   <Banner/>
+   <Showing/>
+   <div class="grid grid-cols-4 gap-4">
+      <div>
+         <Sidebar/>
+      </div>
+      <div class="grid grid-cols-subgrid gap-4 col-span-3">
+         <Catalog/>
+      </div>
+   </div>
 
-    <div class="relative w-full gap-4 flex flex-col items-center z-20 px-8">
-            <img alt="promo discount" src="/special-offer.webp" class="w-fit" loading="lazy">
-    </div>
+
+   <Features/>
 </MainLayout>
