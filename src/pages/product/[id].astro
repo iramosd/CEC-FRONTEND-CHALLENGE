@@ -1,0 +1,26 @@
+---
+import DetailProduct from "../../components/DetailProduct.vue";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { useProducts } from "../../composables/useProducts.ts";
+
+export async function getStaticPaths (): Promise<object> {
+    let routes: object[] = [];
+    const { products, getProducts } = useProducts();
+    await getProducts();
+
+    if(products.value === null) return;
+
+   products.value.forEach((product): void =>{
+        routes.push({
+            params: {id: product.id}
+        });
+    });
+
+    return routes;
+}
+
+const {id} = Astro.params;
+---
+<MainLayout>
+<DetailProduct id={id}/>
+</MainLayout>

@@ -1,6 +1,7 @@
 import{ useApiUrls } from "../composables/useApiUrls.ts";
 import { ref } from "vue";
 import type { Ref } from "vue";
+
 export function useCategories() {
     const error: Ref<string> = ref('Default');
     const categories: Ref<void | object> = ref({});
