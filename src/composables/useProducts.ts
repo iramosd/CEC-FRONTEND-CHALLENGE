@@ -3,13 +3,19 @@ import {ref} from "vue";
 import {useApiUrls} from "./useApiUrls.ts";
 
 export function useProducts() {
+    const itemsPerPage: number = 5;
     const error: Ref<string> = ref('Default');
     const products: Ref<void | object> = ref({});
     const product: Ref<void | object> = ref({});
     const { productsUrl, productsByCategory } = useApiUrls();
 
-    const getProducts = async (): Promise<void> => {
-        products.value = await getFetch(productsUrl);
+    const getProducts = async (page: number | null = null): Promise<void> => {
+        let data = await getFetch(productsUrl);
+
+        if(page === null)
+            products.value = data;
+        else
+            products.value = getItemsByPage(data, page, itemsPerPage)
     }
 
     const getProductsByCategory = async (category): Promise<void> => {
@@ -31,6 +37,12 @@ export function useProducts() {
         const data = await response.json();
 
         return data;
+    }
+
+    const getItemsByPage = (data: object, page: number, itemsPerPage: number) => {
+        const startIndex: number = (page - 1) * itemsPerPage;
+        const endIndex: number = startIndex + itemsPerPage;
+        return data.slice(startIndex, endIndex);
     }
 
     return {

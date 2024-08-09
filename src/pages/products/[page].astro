@@ -1,0 +1,45 @@
+---
+import {useProducts} from "../../composables/useProducts";
+import Banner from "../../components/Banner.vue";
+import Catalog from "../../components/Catalog.vue";
+import Features from "../../components/Features.vue";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Pagination from "../../components/Pagination.vue";
+import Sidebar from "../../components/layout/Sidebar.vue"
+import Showing from "../../components/Showing.vue";
+
+export async function getStaticPaths (): Promise<object> {
+    let routes: object[] = [];
+    const { products, getProducts, getProductsByCategory } = useProducts();
+
+    await getProducts();
+
+    if(products.value !== null && products.value.length > 0) {
+        const count: number = Math.ceil(products.value.length / 5);
+
+        for(let i = 0; i < count; i++){
+            routes.push({
+                params: {page: i+1}
+            });
+        }
+    }
+    return routes;
+}
+
+const {page} = Astro.params;
+---
+<MainLayout>
+    <Banner/>
+    <Showing/>
+    <div class="grid grid-cols-4 gap-4">
+        <div>
+            <Sidebar/>
+        </div>
+        <div class="grid grid-cols-subgrid gap-4 col-span-3">
+            <Catalog page={page}/>
+        </div>
+    </div>
+
+    <Pagination page={page}/>
+    <Features/>
+</MainLayout>

@@ -21,7 +21,7 @@ await getProduct(props.id);
     <div class="bg-[#F9F1E7] text-[#9F9F9F] w-full p-8 lg:py-10 lg:px-20 flex gap-2 lg:gap-6">
       <a class="flex items-center" href="/">Home</a>
       <img src="/icons/arrow.svg" alt="arrow">
-      <a class="flex items-center" href="/">{{ product.category }}</a>
+      <a class="flex items-center" :href="`/products/category/${product.category}`">{{ product.category }}</a>
       <img src="/icons/arrow.svg" alt="arrow">
       <span class="w-[2px] bg-[#9F9F9F]"></span>
       <span class="text-black">{{ product.title }}</span>

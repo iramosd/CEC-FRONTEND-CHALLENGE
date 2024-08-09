@@ -3,6 +3,7 @@ import Banner from "../../../components/Banner.vue";
 import Catalog from "../../../components/Catalog.vue";
 import Features from "../../../components/Features.vue";
 import MainLayout from "../../../layouts/MainLayout.astro";
+import Pagination from "../../../components/Pagination.vue";
 import Sidebar from "../../../components/layout/Sidebar.vue"
 import Showing from "../../../components/Showing.vue";
 import { useCategories } from "../../../composables/useCategories";
@@ -15,13 +16,13 @@ export async function getStaticPaths (): Promise<object> {
 
     await getCategories();
 
-    if(categories.value === null | categories.value.length === 0) return;
-
+    if(categories.value !== null && categories.value.length > 0){
     categories.value.forEach((categoryName): void =>{
         routes.push({
             params: {category: categoryName}
         });
     });
+    }
 
     return routes;
 }
@@ -40,6 +41,6 @@ const {category} = Astro.params;
         </div>
     </div>
 
-
+    <Pagination category={category}/>
     <Features/>
 </MainLayout>
