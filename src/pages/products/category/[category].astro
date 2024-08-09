@@ -1,0 +1,28 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { useCategories } from "../../../composables/useCategories";
+import { useProducts } from "../../../composables/useProducts";
+
+export async function getStaticPaths (): Promise<object> {
+    let routes: object[] = [];
+    const { categories, getCategories } = useCategories();
+    const { products, getProductsByCategory } = useProducts();
+
+    await getCategories();
+
+    if(categories.value === null | categories.value.length === 0) return;
+
+    categories.value.forEach((categoryName): void =>{
+        routes.push({
+            params: {category: categoryName}
+        });
+    });
+
+    return routes;
+}
+
+const {category} = Astro.params;
+---
+<MainLayout>
+
+</MainLayout>

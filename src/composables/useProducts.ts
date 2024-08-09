@@ -6,10 +6,16 @@ export function useProducts() {
     const error: Ref<string> = ref('Default');
     const products: Ref<void | object> = ref({});
     const product: Ref<void | object> = ref({});
-    const { productsUrl } = useApiUrls();
+    const { productsUrl, productsByCategory } = useApiUrls();
 
     const getProducts = async (): Promise<void> => {
         const response = await fetch( productsUrl )
+            .catch(err => error.value = err);
+        products.value = await response.json();
+    }
+
+    const getProductsByCategory = async (category): Promise<void> => {
+        const response = await fetch( productsByCategory+`/${category}` )
             .catch(err => error.value = err);
         products.value = await response.json();
     }

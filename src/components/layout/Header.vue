@@ -13,9 +13,9 @@
     <nav class="hidden md:block">
       <ul class="flex gap-x-[75px]">
         <li class="cursor-pointer font-bold"><a href="/">Home</a></li>
-        <li class="cursor-pointer font-medium"><a href="/shop">Shop</a></li>
-        <li class="cursor-pointer font-medium"><a href="/#">About</a></li>
-        <li class="cursor-pointer font-medium"><a href="/#">Contact</a></li>
+        <li class="cursor-pointer font-medium"><a href="#">Shop</a></li>
+        <li class="cursor-pointer font-medium"><a href="#">About</a></li>
+        <li class="cursor-pointer font-medium"><a href="#">Contact</a></li>
       </ul>
     </nav>
 

@@ -13,7 +13,7 @@ await getCategories();
       Categories
     </h2>
     <ul class="text-[#B88E2F] font-semibold text-[20px] leading-[30px]">
-      <li v-for="category in categories">{{ category }}</li>
+      <li v-for="category in categories"><a :href="`/products/category/${category}`">{{ category }}</a></li>
     </ul>
   </div>
 </aside>
