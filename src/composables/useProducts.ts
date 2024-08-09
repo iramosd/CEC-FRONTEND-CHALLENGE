@@ -9,31 +9,28 @@ export function useProducts() {
     const { productsUrl, productsByCategory } = useApiUrls();
 
     const getProducts = async (): Promise<void> => {
-        const response = await fetch( productsUrl )
-            .catch(err => error.value = err);
-        products.value = await response.json();
+        products.value = await getFetch(productsUrl);
     }
 
     const getProductsByCategory = async (category): Promise<void> => {
-        const response = await fetch( productsByCategory+`/${category}` )
-            .catch(err => error.value = err);
-        products.value = await response.json();
+        products.value = await getFetch( productsByCategory+`/${category}` );
     }
 
     const getProduct = async (id: string): Promise<void> => {
-        const response = await fetch( productsUrl + `/${id}`)
-            .catch(err => error.value = err);
-        product.value = await response.json();
+        product.value = await getFetch(productsUrl + `/${id}`);
     }
 
     const countProducts = async (): Promise<number>  =>{
-        let total: number = 0;
+        let response = await getFetch(productsUrl);
+       return response.length;
+    }
 
-        const response = await fetch( productsUrl )
+    const getFetch = async (url: string): Promise <object> => {
+        const response = await fetch(url)
             .catch(err => error.value = err);
-       total = await response.json().length;
+        const data = await response.json();
 
-       return total;
+        return data;
     }
 
     return {
@@ -41,6 +38,7 @@ export function useProducts() {
         products,
         product,
         getProducts,
+        getProductsByCategory,
         getProduct,
         countProducts,
     }
