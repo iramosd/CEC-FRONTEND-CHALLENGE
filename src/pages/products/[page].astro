@@ -10,7 +10,7 @@ import Showing from "../../components/Showing.vue";
 
 export async function getStaticPaths (): Promise<object> {
     let routes: object[] = [];
-    const { products, getProducts, getProductsByCategory } = useProducts();
+    const { products, getProducts } = useProducts();
 
     await getProducts();
 

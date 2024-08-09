@@ -7,12 +7,10 @@ import Pagination from "../../../components/Pagination.vue";
 import Sidebar from "../../../components/layout/Sidebar.vue"
 import Showing from "../../../components/Showing.vue";
 import { useCategories } from "../../../composables/useCategories";
-import { useProducts } from "../../../composables/useProducts";
 
 export async function getStaticPaths (): Promise<object> {
     let routes: object[] = [];
     const { categories, getCategories } = useCategories();
-    const { products, getProductsByCategory } = useProducts();
 
     await getCategories();
 
@@ -41,6 +39,8 @@ const {category} = Astro.params;
         </div>
     </div>
 
+<!--
     <Pagination category={category}/>
+-->
     <Features/>
 </MainLayout>
