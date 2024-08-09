@@ -1,43 +1,73 @@
-# Frontend Challenge
+# Astro Instructions
 
-Welcome to the CEC's Frontend Challenge! This test aims to evaluate your web development skills using the [Astro](https://astro.build/), [TailwindCSS](https://tailwindcss.com/), and [Vue](https://vuejs.org/). Your task is to build a product catalog that fetches and displays data from the Fake Store API.
+Install dependencies:
 
-## Requirements
+```sh
+npm install
+```
 
-1. **Product Catalog**: Create a product catalog that consumes the [Fake Store API](https://fakestoreapi.com/).
-2. **Sidebar with Categories**: The catalog must have a sidebar list with all categories.
-3. **Product List**: Display products in a grid format.
-4. **Pagination**: Implement pagination for the product list.
-5. **Category Filtering**: When clicking on a category link, display only the products in that category.
-6. **Product Display**: Each product in the list should display the title, image, and rating.
-7. **Product Detail Page**: Create a page for each product that displays all its details, including those shown in the product listing.
+For local environment: 
 
-## Stack
+```sh
+npm run dev
+```
 
-- **Astro**: Use the Astro framework to generate a static site.
-- **TailwindCSS**: Use TailwindCSS for styling.
-- **Vue**: Use Vue.js to create components.
+For production environment:
 
-## Submission
+```sh
+npm run build
+```
+## 🚀 Project Structure
 
-- Fork the repository containing this README.
-- Provide a link to the public repository containing your code.
-- Ensure your repository includes a README with instructions on how to run the project locally.
+Inside of your Astro project, you'll see the following folders and files:
 
-## Evaluation Criteria
+```text
+/
+├── public/
+├── src/
+│   └── components/
+│       └── layout/
+│   └── composables/
+│   └── layouts/
+│   └── pages/
+│       │
+│       └── product/
+│       │
+│       └── products/
+└── package.json
+```
 
-- **Code Quality**: Clean, readable, and well-documented code.
-- **Functionality**: All listed features work as expected.
-- **UI/UX**: The user interface is intuitive and visually appealing.
-- **Performance**: Efficient data fetching and rendering.
-- **Completion**: Adherence to the requirements and stack specified.
-
-## Doubts?
-
-Do you have any doubts related to the process? Open an [issue](https://github.com/Cutting-Edge-Concepts/cec-frontend-challenge/issues) and we'll be happy to help.
-
-Good luck, and happy coding!
+Here's a brief description you can use for your README file to describe the structure of the folders:
 
 ---
 
-If you have any questions, feel free to reach out.
+### Project Structure
+
+- **`/public/`**: Contains static assets like images, fonts, and other files that are served directly by the server. This folder is accessible publicly.
+
+- **`/src/`**: The main source directory where all the application code resides.
+    - **`/src/components/`**: Contains reusable Vue components that can be used throughout the application.
+        - **`/src/components/layout/`**: Components specifically related to layout structure, such as headers, footers, and navigation bars.
+
+    - **`/src/composables/`**: Contains reusable logic or composition functions (e.g., custom hooks) that can be shared across multiple components.
+
+    - **`/src/layouts/`**: Layout components that define the general structure of different pages, often used to wrap the content of pages.
+
+    - **`/src/pages/`**: Contains pages of the application.
+        - **`/src/pages/product/`**: Specific to individual product related page.
+        - **`/src/pages/products/`**: Contains components for pages displaying lists or collections of products.
+
+- **`package.json`**: Defines project metadata, dependencies, scripts, and other configurations needed for building and running the project.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
